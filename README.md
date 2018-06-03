@@ -3,7 +3,7 @@
 This is the last project of Udacity nanodegree Full Stack Web Developer where I have to deploy the web aplication Catalog in a Linux server instance.
 The focus of the project is to teach the students how to secure and set up a Linux server.
 
-## List of third-party resources used:
+## List of resources used:
 
 - Google API
 - Apache2
@@ -159,8 +159,7 @@ Change the SQLite database to PostgreSQL in __init__.py, categories.py, database
 **Disable directories in the browser**
 
 Create a file: /etc/apache2/sites-available/catalog.conf and add:
-
-`
+```
 <VirtualHost *:80>
 		ServerName 34.242.35.57
 		ServerAdmin cristianacmc@gmail.com
@@ -178,8 +177,7 @@ Create a file: /etc/apache2/sites-available/catalog.conf and add:
 		LogLevel warn
 		CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
-`
-
+```
 Run:
 - `a2ensite catalog`
 - `sudo service apache2 reload`
@@ -187,8 +185,7 @@ Run:
 **To serve the Flask application**
 
 Create a file in /var/www/catalog/catalog.wsgi and add:
-
-`
+```
 activate_this = '/var/www/catalog/itemCatalog/venv/bin/activate_this.py'
 execfile(activate_this, dict(__file__=activate_this))
 #!/usr/bin/python
@@ -198,8 +195,7 @@ logging.basicConfig(stream=sys.stderr)
 sys.path.insert(0,"/var/www/catalog/")
 from itemCatalog import app as application
 application.secret_key = 'super_secret_key'
-`
-
+```
 - Disable the Apache site: `sudo a2dissite 000-default.conf`
 
 - In `/var/www` change the owner of the project:
@@ -207,7 +203,7 @@ application.secret_key = 'super_secret_key'
 
 ### Run the project:
 
-- In `itemcatalog` directory, run virtualenv `. venv/bin/activate`
+- In **itemcatalog** directory, run virtualenv `. venv/bin/activate`
 - `python categories.py`
 - `deactivate`
 - `sudo service apache2 restart`
