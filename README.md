@@ -35,7 +35,7 @@ Once your instance has started up, the public IP address is displayed along with
 In order to run the ssh command to access remotely the server, I followed these steps:
 
 - Download the instance private key
-- Move the file to ~/.ssh/ and rename it to lightsailkey.rsa
+- Move the file to ~/.ssh/ on my local machine and rename it to lightsailkey.rsa
 - Run chmod `600 ~/.ssh/lightsailkey.rsa`
 - Log into the instance with: `~/.ssh/lightsailkey.rsa ubuntu@34.242.35.57`
 
@@ -80,6 +80,8 @@ In order to run the ssh command to access remotely the server, I followed these 
 - Back to the terminal logged as grader, paste the content to .ssh/authorized_keys file
 - run chmod 700 on ssh directory
 - run chmod 644 on the authorized_keys file
+- Open the /etc/ssh/sshd_config and where is `PermitRootLogin prohibit-password` to  `PermitRootLogin no`
+- run `sudo service ssh restart`
 
 To log as grader use the following command: `ssh -i ~/.ssh/graderKey -p 2200 grader@34.242.35.57`
 
